@@ -111,8 +111,8 @@ public class UserController {
         return convertEntity2DTO_employee(employee);
     }
 
-//    @PostMapping
-    @GetMapping("/employee/{employeeId}")
+//    @GetMapping
+    @PostMapping("/employee/{employeeId}")
     public EmployeeDTO getEmployee(@PathVariable Long employeeId) {
 //        throw new UnsupportedOperationException();
         Employee employee = employeeService.getEmployee(employeeId);
@@ -126,9 +126,8 @@ public class UserController {
         return convertEntity2DTO_employee(employee);
     }
 
-//    @GetMapping
 //    @PostMapping
-    @PostMapping("/employee/availability")
+    @GetMapping("/employee/availability")
     public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDTO) {
 //        throw new UnsupportedOperationException();
         List<Employee> employeeList = employeeService

@@ -37,19 +37,24 @@ public class EmployeeService {
       return employeeRepository.save(employee);
    }
    public List<Employee> findEmployeesForService(Set<EmployeeSkill> skills, LocalDate date) {
-      List<Employee> employeeSkill_filtered =
-              employeeRepository.findEmployeesForServiceEmployeeSkill(skills, skills.size());
-      //skill set and date
       DayOfWeek day = date.getDayOfWeek();
+      List<Employee> employees;
       if (date != null){
-         date.getDayOfWeek();
-         for ( Employee e : employeeSkill_filtered ) {
-            if (!e.getDaysAvailable().contains(day)){
-               employeeSkill_filtered.remove(e);
-            }
-         }
+         employees = employeeRepository.findAllByDaysAvailableContaining(day);
+      } else {
+         employees = employeeRepository.findAll();
       }
-      return employeeSkill_filtered;
+//              employeeRepository.findEmployeesForServiceEmployeeSkill(skills, Integer.toUnsignedLong(skills.size()));
+      //skill set and date
+      if (skills != null & !skills.isEmpty()){
+         employees.removeIf(e -> !e.getSkills().containsAll(skills));
+//         for ( Employee e : employeeSkill_filtered ) {
+//            if (!e.getDaysAvailable().contains(day)){
+//               employeeSkill_filtered.remove(e);
+//            }
+//         }
+      }
+      return employees;//employeeSkill_filtered;
    }
 
 
