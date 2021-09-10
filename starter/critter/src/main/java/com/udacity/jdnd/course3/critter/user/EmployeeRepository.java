@@ -12,13 +12,13 @@ import java.util.Set;
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
    @Query(
-           "SELECT e FROM Employee e" +
+           "FROM Employee e" +
                    " where :numberOfSkills = (" +
                    "    select count(distinct e2.skills) from Employee e2" +
                    "    where e2.id = e.id and e2.skills IN ( :skills )" +
                    " )"
    )
-   public List <Employee> findEmployeesForService_EmployeeSkill(int numberOfSkills, Set <EmployeeSkill> skills);
+   List<Employee> findEmployeesForServiceEmployeeSkill(Set <EmployeeSkill> skills, int numberOfSkills);
 //   select b from Book b
 //   where :numberOfTags = (
 //      select count(distinct tag.tagName) from Book b2

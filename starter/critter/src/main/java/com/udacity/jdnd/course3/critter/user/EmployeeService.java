@@ -37,11 +37,19 @@ public class EmployeeService {
       return employeeRepository.save(employee);
    }
    public List<Employee> findEmployeesForService(Set<EmployeeSkill> skills, LocalDate date) {
+      List<Employee> employeeSkill_filtered =
+              employeeRepository.findEmployeesForServiceEmployeeSkill(skills, skills.size());
       //skill set and date
+      DayOfWeek day = date.getDayOfWeek();
       if (date != null){
          date.getDayOfWeek();
+         for ( Employee e : employeeSkill_filtered ) {
+            if (!e.getDaysAvailable().contains(day)){
+               employeeSkill_filtered.remove(e);
+            }
+         }
       }
-      return employeeRepository.findEmployeesForService_EmployeeSkill(skills.size(), skills);
+      return employeeSkill_filtered;
    }
 
 

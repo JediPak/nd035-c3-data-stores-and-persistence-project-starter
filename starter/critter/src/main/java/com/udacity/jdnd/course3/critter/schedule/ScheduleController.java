@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 
@@ -65,17 +66,35 @@ public class ScheduleController {
 
     @GetMapping("/pet/{petId}")
     public List<ScheduleDTO> getScheduleForPet(@PathVariable Long petId) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        List<Schedule> scheduleList = schedulerService.getScheduleForPet(petId);
+
+        List<ScheduleDTO> scheduleDTOList =
+                scheduleList.stream().map(s -> convertEntity2DTO(s)).collect(Collectors.toList());
+        return scheduleDTOList;
     }
 
     @GetMapping("/employee/{employeeId}")
     public List<ScheduleDTO> getScheduleForEmployee(@PathVariable Long employeeId) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+        List<Schedule> scheduleList = schedulerService.getScheduleForEmployee(employeeId);
+
+        List<ScheduleDTO> scheduleDTOList =
+                scheduleList.stream().map(s -> convertEntity2DTO(s)).collect(Collectors.toList());
+        return scheduleDTOList;
+
     }
 
     @GetMapping("/customer/{customerId}")
     public List<ScheduleDTO> getScheduleForCustomer(@PathVariable Long customerId) {
-        throw new UnsupportedOperationException();
+//        throw new UnsupportedOperationException();
+
+        List<Schedule> scheduleList = schedulerService.getScheduleForCustomer(customerId);
+
+        List<ScheduleDTO> scheduleDTOList =
+                scheduleList.stream().map(s -> convertEntity2DTO(s)).collect(Collectors.toList());
+        return scheduleDTOList;
+
     }
 
     private ScheduleDTO convertEntity2DTO(Schedule schedule){

@@ -17,11 +17,11 @@ public class Schedule {
    @GeneratedValue
    private Long id;
 
-   @OneToMany()//(mappedBy = "employee", fetch = FetchType.LAZY)
+   @ManyToMany()//(mappedBy = "employee", fetch = FetchType.LAZY)
    private List<Employee> employees = new ArrayList<>();
 //   private List <Long> employeeIds;
 
-   @OneToMany//(mappedBy = "pets", fetch = FetchType.LAZY)
+   @ManyToMany//(mappedBy = "pets", fetch = FetchType.LAZY)
    private List<Pet> pets = new ArrayList <>();
 //   private List<Long> petIds;
 

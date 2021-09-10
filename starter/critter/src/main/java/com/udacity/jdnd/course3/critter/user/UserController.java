@@ -127,10 +127,12 @@ public class UserController {
     }
 
 //    @GetMapping
+//    @PostMapping
     @PostMapping("/employee/availability")
-    public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeDTO) {
+    public List<EmployeeDTO> findEmployeesForService(@RequestBody EmployeeRequestDTO employeeRequestDTO) {
 //        throw new UnsupportedOperationException();
-        List<Employee> employeeList = employeeService.findEmployeesForService(employeeDTO.getSkills(), employeeDTO.getDate());
+        List<Employee> employeeList = employeeService
+                .findEmployeesForService(employeeRequestDTO.getSkills(), employeeRequestDTO.getDate());
 
         List<EmployeeDTO> employeeDTOList = new ArrayList <>();
         for(Employee employee : employeeList){
