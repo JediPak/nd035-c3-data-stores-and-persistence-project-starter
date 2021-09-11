@@ -4,11 +4,12 @@ import org.hibernate.annotations.Nationalized;
 
 import javax.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+//@Entity
+//@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public class User {
    @Id
-   @GeneratedValue
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
    @Nationalized // should use @Nationalized instead of @Type=nstring
    private String name;
